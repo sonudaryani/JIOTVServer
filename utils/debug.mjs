@@ -24,7 +24,7 @@ function getCallerInfo() {
 }
 
 export default function jdebug(...args) {
-  const isDebug = process.env.DHRUV_JTV_DEBUG === "true";
+  const isDebug = process.env.DEBUG === "true";
   if (isDebug) {
     const callerInfo = getCallerInfo();
     console.log(

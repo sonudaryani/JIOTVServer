@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 import fs from "fs";
 app.use(express.json());
-const PORT = process.env.DHRUV_JTV_PORT || 3500;
+const PORT = process.env.PORT || 3500;
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
