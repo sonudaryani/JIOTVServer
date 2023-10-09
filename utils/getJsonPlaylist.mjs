@@ -12,11 +12,10 @@ export default async function genPlaylist() {
         "User-Agent": "plaYtv/7.0.8 (Linux;Android 7.1.2) ExoPlayerLib/2.11.7",
       },
     };
-    if (Jiotv.findOne({ key: "channels.jiotv" }).value != null) {
-      file = JSON.parse(
-        // fs["readFileSync"]("channels.jiotv", { encoding: "utf8", flag: "r" })
-        await Jiotv.findOne({ key: "channels.jiotv" }).value
-      );
+
+    const jiotvDocument = await Jiotv.findOne({ key: 'channels.jiotv' }).exec();
+    if (jiotvDocument) {
+      file = JSON.parse(jiotvDocument.value);
     } else {
       let req = await fetch(
         "https://jiotv.data.cdn.jio.com/apis/v1.4/getMobileChannelList/get/?os=android&devicetype=phone",
