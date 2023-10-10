@@ -53,11 +53,18 @@ export async function login(mobile, otp) {
           return { success: false, message: data.message };
         }
         //fs["writeFileSync"]("./src/tokenData.jiotv", JSON["stringify"](data));
-        const jiotvdoc = new Jiotv({
-          key: "tokenData",
-          value: JSON.stringify(data),
-        })
-        await jiotvdoc.save();
+        const jiotvDocument = await Jiotv.findOne({ key: "tokenData" }).exec();
+        if (jiotvDocument) {
+          jiotvDocument.value = JSON.stringify(data);
+          await jiotvDocument.save();
+        }
+        else {
+          const jiotvDocument = new Jiotv({
+            key: "tokenData",
+            value: JSON.stringify(data),
+          });
+          await jiotvDocument.save();
+        }
         return { success: true, message: "login success" };
     } catch (error) {
         return { success: false, message: error.message };

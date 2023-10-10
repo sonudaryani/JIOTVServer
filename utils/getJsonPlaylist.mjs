@@ -9,7 +9,6 @@ export default async function genPlaylist() {
       method: "GET",
       headers: {
         Accept: "*/*",
-        "User-Agent": "plaYtv/7.0.8 (Linux;Android 7.1.2) ExoPlayerLib/2.11.7",
       },
     };
 
