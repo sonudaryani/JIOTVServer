@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "build": "tar --exclude-from=.tarignore -czvf ../JTVServer.tar.gz  --transform='s,^,JTVServer/,' ."
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

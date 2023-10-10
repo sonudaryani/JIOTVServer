@@ -45,7 +45,19 @@ router.get("/updateplaylist", async (req, res) => {
     options
   );
   response = await response.json();
-  fs["writeFileSync"]("./channels.jiotv", JSON.stringify(response));
+  //fs["writeFileSync"]("./channels.jiotv", JSON.stringify(response));
+  const jiotvChannel = await Jiotv.findOne({ key: "channels.jiotv" }).exec();
+  if (jiotvChannel) {
+    jiotvChannel.value = JSON.stringify(response);
+    await jiotvChannel.save();
+  }
+  else{
+    const jiotvChannel = new Jiotv({
+      key: "channels.jiotv",
+      value: JSON.stringify(response),
+    });
+    await jiotvChannel.save();
+  }
   res.status(200).send(response);
 });
 

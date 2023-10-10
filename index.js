@@ -62,13 +62,11 @@ import loginRoute from "./routes/login.mjs";
 import ipRoute from "./routes/ip.mjs";
 import channelsRoute from "./routes/channel.mjs";
 import playlistRoute from "./routes/playlist.mjs";
-import catchulRoute from "./routes/catchup/index.mjs";
 
 app.use("/", loginRoute);
 app.use("/", ipRoute);
 app.use("/", channelsRoute);
 app.use("/", playlistRoute);
-app.use("/catchup", catchulRoute);
 
 // app.use(express.static(path.join(__dirname, "public")));
 app.get("/favicon.ico", (req, res) => {
